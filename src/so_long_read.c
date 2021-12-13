@@ -6,7 +6,7 @@
 /*   By: ytaya <ytaya@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 14:38:10 by ytaya             #+#    #+#             */
-/*   Updated: 2021/12/13 15:09:20 by ytaya            ###   ########.fr       */
+/*   Updated: 2021/12/13 19:47:20 by ytaya            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void	ft_read_map(t_game *game, char *map_name)
 	while (1)
 	{
 		join = get_next_line(fd);
+		if (fd < 0 || game->file_is_empty == 1)
+			ft_print_error("File doesn't exist or is empty!\n");
 		if (!join)
 			break ;
 		if (*join == '\n')
@@ -76,36 +78,31 @@ void	ft_seturls(t_game *game)
 	game->player.player_path = "imgs/player.xpm";
 }
 
-void	ft_draw(t_game *game, int i, int j)
+void	ft_draw(t_game *game)
 {
-	if (game->map[i][j] == '1')
-		game->wall.imgptr = mlx_xpm_file_to_image(game->mlx,
-				game->wall.wall_path, &game->t, &game->t);
-	else if (game->map[i][j] == '0')
-		game->empty.imgptr = mlx_xpm_file_to_image(game->mlx,
-				game->empty.empty_path, &game->t, &game->t);
-	else if (game->map[i][j] == 'C')
-		game->collect.imgptr = mlx_xpm_file_to_image(game->mlx,
-				game->collect.collect_path, &game->t, &game->t);
-	else if (game->map[i][j] == 'E')
-		game->exit.imgptr = mlx_xpm_file_to_image(game->mlx,
-				game->exit.exit_path, &game->t, &game->t);
-	else if (game->map[i][j] == 'P')
-		game->player.imgptr = mlx_xpm_file_to_image(game->mlx,
-				game->player.player_path, &game->t, &game->t);
+	game->wall.imgptr = mlx_xpm_file_to_image(game->mlx,
+			game->wall.wall_path, &game->t, &game->t);
+	game->empty.imgptr = mlx_xpm_file_to_image(game->mlx,
+			game->empty.empty_path, &game->t, &game->t);
+	game->collect.imgptr = mlx_xpm_file_to_image(game->mlx,
+			game->collect.collect_path, &game->t, &game->t);
+	game->exit.imgptr = mlx_xpm_file_to_image(game->mlx,
+			game->exit.exit_path, &game->t, &game->t);
+	game->player.imgptr = mlx_xpm_file_to_image(game->mlx,
+			game->player.player_path, &game->t, &game->t);
 }
 
 void	ft_putimg(t_game *game, int i, int j)
 {
-	if (game->map[i][j] == '1')
+	if (game->map[i][j] == 'C')
 		mlx_put_image_to_window(game->mlx,
-			game->wind, game->wall.imgptr, j * FR, i * FR);
+			game->wind, game->collect.imgptr, j * FR, i * FR);
 	else if (game->map[i][j] == '0')
 		mlx_put_image_to_window(game->mlx,
 			game->wind, game->empty.imgptr, j * FR, i * FR);
-	else if (game->map[i][j] == 'C')
+	else if (game->map[i][j] == '1')
 		mlx_put_image_to_window(game->mlx,
-			game->wind, game->collect.imgptr, j * FR, i * FR);
+			game->wind, game->wall.imgptr, j * FR, i * FR);
 	else if (game->map[i][j] == 'E')
 		mlx_put_image_to_window(game->mlx,
 			game->wind, game->exit.imgptr, j * FR, i * FR);

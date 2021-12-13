@@ -6,7 +6,7 @@
 /*   By: ytaya <ytaya@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 14:38:05 by ytaya             #+#    #+#             */
-/*   Updated: 2021/12/13 15:20:00 by ytaya            ###   ########.fr       */
+/*   Updated: 2021/12/13 18:09:02 by ytaya            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	ft_setzero(t_game *game)
 	game->y_player = 0;
 	game->n_moves = 0;
 	game->m_exit = 0;
+	game->file_is_empty = 0;
 }
 
 void	ft_create_window(t_game *game, char *map_name)
@@ -36,4 +37,16 @@ void	ft_create_window(t_game *game, char *map_name)
 	game->wind = mlx_new_window(game->mlx,
 			game->width * FR, game->height * FR, "so_long");
 	ft_map_parse(game, 0);
+}
+
+void	ft_file_empty(char *map_name, t_game *game)
+{
+	int		fd;
+	char	*join;
+
+	join = NULL;
+	fd = open(map_name, O_RDONLY);
+	if (read(fd, join, 1) == 0)
+		game->file_is_empty = 1;
+	close(fd);
 }

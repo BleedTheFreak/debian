@@ -6,7 +6,7 @@
 /*   By: ytaya <ytaya@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 14:38:13 by ytaya             #+#    #+#             */
-/*   Updated: 2021/12/13 15:12:33 by ytaya            ###   ########.fr       */
+/*   Updated: 2021/12/13 21:46:29 by ytaya            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ft_map_parse(t_game *game, int parse)
 		while (game->map[i][j])
 		{
 			if (!parse)
-				ft_draw(game, i, j);
+				ft_draw(game);
 			ft_putimg(game, i, j);
 			j++;
 		}
@@ -47,6 +47,7 @@ void	ft_mapchaner(t_game *game, int keycode)
 		ft_moveto(game, 0, -1);
 	else if (keycode == 53)
 	{
+		printf("\033[0;31mYou ended the game!\n");
 		printf("\033[0;35mThank you for playing our game ! (^_^)\n");
 		exit(0);
 	}

@@ -6,7 +6,7 @@
 /*   By: ytaya <ytaya@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 14:37:53 by ytaya             #+#    #+#             */
-/*   Updated: 2021/12/13 15:50:47 by ytaya            ###   ########.fr       */
+/*   Updated: 2021/12/13 21:46:29 by ytaya            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int	ft_loop(t_game *game)
 int	ft_close(t_game *game)
 {
 	(void) game;
+	printf("\033[0;31mYou ended the game!\n");
 	printf("\033[0;35mThank you for playing our game ! (^_^)\n");
 	exit(0);
 	return (0);
@@ -68,12 +69,12 @@ void	ft_moveto(t_game *game, int i, int j)
 				0x00FF00, "You Won");
 		}
 	}
-	printf("\033[0;33mMove number ==> {%d}\n", game->n_moves);
 }
 
 void	ft_swap(t_game *game, int i, int j)
 {
-		game->map[game->y_player][game->x_player] = '0';
-		game->map[game->y_player - i][game->x_player - j] = 'P';
-		game->n_moves++;
+	game->map[game->y_player][game->x_player] = '0';
+	game->map[game->y_player - i][game->x_player - j] = 'P';
+	game->n_moves++;
+	printf("\033[0;33mMove number ==> {%d}\n", game->n_moves);
 }

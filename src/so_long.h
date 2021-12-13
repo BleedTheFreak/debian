@@ -6,7 +6,7 @@
 /*   By: ytaya <ytaya@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 14:37:41 by ytaya             #+#    #+#             */
-/*   Updated: 2021/12/13 15:22:04 by ytaya            ###   ########.fr       */
+/*   Updated: 2021/12/13 19:29:31 by ytaya            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ typedef struct s_game
 	int			x_player;
 	int			t;
 	int			m_exit;
+	int			file_is_empty;
 }	t_game;
 
 void	ft_free(char **str);
@@ -107,9 +108,10 @@ void	ft_moveto(t_game *game, int i, int j);
 void	ft_create_window(t_game *game, char *map_name);
 void	ft_print_error(char *message);
 void	ft_setzero(t_game *game);
-void	ft_draw(t_game *game, int i, int j);
+void	ft_draw(t_game *game);
 void	ft_putimg(t_game *game, int i, int j);
 void	ft_map_parse(t_game *game, int parse);
 void	ft_swap(t_game *game, int i, int j);
+void	ft_file_empty(char *map_name, t_game *game);
 
 #endif
