@@ -6,7 +6,7 @@
 /*   By: ytaya <ytaya@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 14:38:13 by ytaya             #+#    #+#             */
-/*   Updated: 2021/12/13 21:46:29 by ytaya            ###   ########.fr       */
+/*   Updated: 2021/12/13 22:45:45 by ytaya            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,9 @@ int	main(int ac, char **av)
 	t_game	game;
 
 	if (ac == 2)
+	{
 		ft_lunch(&game, av[1]);
+	}
 	else
 		ft_print_error("Map must entre as argument !\n");
 	return (0);
